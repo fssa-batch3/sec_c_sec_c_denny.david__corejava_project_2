@@ -22,7 +22,7 @@ public class TestStudentManagmentAppValidator {
 		
 	}
 	@Test
-  public void testStudentValidator() { 
+  public void testStudentValidator() {  
 	  try { 
 		 StudentValidator.validateName(" ");
 	  }

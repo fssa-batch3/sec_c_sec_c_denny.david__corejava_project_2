@@ -26,7 +26,7 @@ public class Student {
 		this.password = password;
 		this.gender = gender;
 		this.dob = dob;
-		this.createdDate = createdDate;
+		this.createdDate = createdDate; 
 	}
     public Student() {
 //    	default constructor
