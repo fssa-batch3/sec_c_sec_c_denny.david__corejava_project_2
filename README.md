@@ -1,6 +1,6 @@
 # sec_c_sec_c_denny.david__corejava_project_2
 # Student Management App
-### The Student Management Application is a software system designed to efficiently manage and organize student-related information within an educational institution. It provides a user-friendly interface for administrators, teachers, and staff to perform various tasks related to student records and enrollment.
+ The Student Management Application is a software system designed to efficiently manage and organize student-related information within an educational institution. It provides a user-friendly interface for administrators, teachers, and staff to perform various tasks related to student records and enrollment.
 
 ## Table: students
 
