@@ -1,4 +1,6 @@
 # sec_c_sec_c_denny.david__corejava_project_2
+# Student Management App
+
 ## Table: students
 
 | Column       | Data Type     | Constraints                         |
