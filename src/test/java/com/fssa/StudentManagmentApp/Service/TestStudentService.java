@@ -6,10 +6,10 @@ import java.time.LocalDate;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
+import com.fssa.StudentManagementApp.Enum.Gender;
 import com.fssa.StudentManagementApp.Service.StudentService;
 import com.fssa.StudentManagementApp.model.Student;
 import com.fssa.StudentManagementApp.model.StudentValidatorErrors;
-import com.fsss.StudentManagementApp.Validator.StudentValidator;
 
 //Testing service layer using testStudentService
 public class TestStudentService {
@@ -24,7 +24,7 @@ public class TestStudentService {
 	    student.setDob(dob);
 	    student.setEmailId("murugasaaaan@example.com");
 	    student.setCreatedDate(createdDate);
-	   // student.setGender("M");
+	    student.setGender(Gender.MALE);
 	    student.setPassword("1234567890");
 	    student.setMobileNo("7418646406");
 	    Assertions.assertTrue(StudentService.addStudent(student));
@@ -34,7 +34,7 @@ public class TestStudentService {
 	public void testAddInvalidStudent() throws SQLException {
 		Student student1 = new Student();
 		student1.setName("");
-		//student1.setGender("Male");
+		student1.setGender(Gender.MALE);
 		LocalDate dob = LocalDate.of(2024,02,13);
 		student1.setDob(dob);
 		LocalDate createdDate = dob;
