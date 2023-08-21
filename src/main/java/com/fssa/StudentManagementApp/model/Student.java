@@ -1,6 +1,8 @@
 package com.fssa.StudentManagementApp.model;
 
-import java.time.*;
+import java.time.LocalDate;
+
+import com.fssa.StudentManagementApp.Enum.Gender;
 
 public class Student {
 	
@@ -9,10 +11,8 @@ public class Student {
 	private String emailId;
 	private String mobileNo;
 	private String password;
-	private String gender;
-    private	enum gender{
-		 M,F;  
-    }
+	private Gender gender;
+	
     private LocalDate dob; 
     private LocalDate createdDate;
     
@@ -24,29 +24,21 @@ public class Student {
 		this.emailId = emailId;
 		this.mobileNo = mobileNo;
 		this.password = password;
-		this.gender = gender;
+		
 		this.dob = dob;
 		this.createdDate = createdDate; 
 	}
-    public Student() {
+    public Gender getGender() {
+		return gender;
+	}
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
+	public Student() {
 //    	default constructor
     }
     
-	public Student(String gender) {
-		super();
-		this.gender = gender;
-	}
-
-
-	public String getGender() {
-		return gender;
-	}
-
-
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-
+	
 
 	public int getId() {
 		return id;
@@ -58,7 +50,7 @@ public class Student {
 		return name;
 	}
 	public void setName(String name) {
-		this.name = name;
+		this.name = name; 
 	}
 	public String getEmailId() {
 		return emailId;

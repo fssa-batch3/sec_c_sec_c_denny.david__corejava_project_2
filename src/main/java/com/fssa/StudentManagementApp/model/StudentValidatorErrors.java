@@ -2,7 +2,7 @@ package com.fssa.StudentManagementApp.model;
 
 //Errors 
 public class StudentValidatorErrors {
-	
+   
 	//Checking for nullity
    public  static final String INVALID_NULL = "Student should not be null";
    
@@ -19,4 +19,8 @@ public class StudentValidatorErrors {
    public static final String INVALID_DOB = "The Date of birth should not be in the future";
    //Error message for creating Date 
    public static final String INVALID_CREATEDDATE = "The created date should not be after the current date";
+   // Error msge for invalid email
+   public static final String INVALID_EMAILID = "Don't give invalid emaildid";  
+   //Error msge for gender
+   public static final String INVALID_GENDER = "The gender should be in M OR F";
 }

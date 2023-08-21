@@ -8,26 +8,17 @@ import java.sql.Statement;
 import java.time.LocalDate;
 
 import com.fssa.StudentManagementApp.model.Student;
+import com.fssa.StudentManagementApp.util.ConnectionUtil;
+import com.fssa.StudentManagementApp.util.Logger;
 import com.fsss.StudentManagementApp.Validator.StudentValidator;
 
 public class StudentDao {
-//	public static void main(String[] args) throws SQLException {
-//		Student student = new Student();
-//		student.setDob(LocalDate.of(2004, 02, 13));
-//		student.setEmailId("denny@gmail.com");
-//		student.setGender("M");
-//		student.setMobileNo("8098665678");
-//		student.setName("Denny");
-//		student.setPassword("Naresh@123");
-////		addStudent(student);
-////		readStudent();
-//		findStudentByName("Denny");
-//	}
+	
 
 //	create student
 	public static boolean addStudent(Student student) throws SQLException {
 		StudentValidator.validateStudent(student);
-                       
+
 		try (Connection con = ConnectionUtil.getConnection()) {
 			String query = "INSERT INTO students (name,email,mobile_no,password,gender,dob) VALUES(?,?,?,?,?,?)";
 			try (PreparedStatement pst = con.prepareStatement(query)) {
@@ -35,11 +26,12 @@ public class StudentDao {
 				pst.setString(2, student.getEmailId());
 				pst.setString(3, student.getMobileNo());
 				pst.setString(4, student.getPassword());
-				pst.setString(5, student.getGender());
+				pst.setString(5, student.getGender()+"");
 				pst.setDate(6, java.sql.Date.valueOf(student.getDob()));
 
 				int rows = pst.executeUpdate();
 
+				System.out.println(rows);
 				if (rows > 0) {
 					return true;
 				} else {
@@ -49,7 +41,8 @@ public class StudentDao {
 			}
 		}
 	}
-
+	
+	
 //	read student
 	public static boolean readStudent() throws SQLException {
 		try (Connection con = ConnectionUtil.getConnection()) {
@@ -57,15 +50,15 @@ public class StudentDao {
 			try (Statement st = con.createStatement()) {
 				try (ResultSet rs = st.executeQuery(query)) {
 					while (rs.next()) {
-						System.out.println("id : "+ rs.getInt(1));
-						System.out.println("name : "+ rs.getString(2));
-						System.out.println("email id : "+ rs.getString(3));
-						System.out.println("mobile no : "+ rs.getString(4));
-						System.out.println("password : "+ rs.getString(5));
-						System.out.println("gender : "+ rs.getCharacterStream(6));
-						System.out.println("dob : "+ rs.getDate(7));
-						System.out.println("created_date : "+ rs.getDate(8));
-						System.out.println("\n");
+						Logger.info("id : " + rs.getInt(1));
+						Logger.info("name : " + rs.getString(2));
+						Logger.info("email id : " + rs.getString(3));
+						Logger.info("mobile no : " + rs.getString(4));
+						Logger.info("password : " + rs.getString(5));
+						Logger.info("gender : " + rs.getCharacterStream(6));
+						Logger.info("dob : " + rs.getDate(7));
+						Logger.info("created_date : " + rs.getDate(8));
+						Logger.info("\n");
 					}
 				}
 			}
@@ -106,22 +99,23 @@ public class StudentDao {
 			}
 		}
 	}
+
 //	findStudentByName
 	public static boolean findStudentByName(String name) throws SQLException {
-		try(Connection connection = ConnectionUtil.getConnection()){
+		try (Connection connection = ConnectionUtil.getConnection()) {
 			String query = "SELECT * FROM students WHERE name = ?";
-			try(PreparedStatement pst = connection.prepareStatement(query)){
+			try (PreparedStatement pst = connection.prepareStatement(query)) {
 				pst.setString(1, name);
-				try(ResultSet rs = pst.executeQuery()){
-					while(rs.next()) {
-						System.out.println("id : "+ rs.getInt(1));
-						System.out.println("name : "+ rs.getString(2));
-						System.out.println("email id : "+ rs.getString(3));
-						System.out.println("mobile no : "+ rs.getString(4));
-						System.out.println("password : "+ rs.getString(5));
-						System.out.println("gender : "+ rs.getCharacterStream(6));
-						System.out.println("dob : "+ rs.getDate(7));
-						System.out.println("created_date : "+ rs.getDate(8));
+				try (ResultSet rs = pst.executeQuery()) {
+					while (rs.next()) {
+						Logger.info("id : " + rs.getInt(1));
+						Logger.info("name : " + rs.getString(2));
+						Logger.info("email id : " + rs.getString(3));
+						Logger.info("mobile no : " + rs.getString(4));
+						Logger.info("password : " + rs.getString(5));
+						Logger.info("gender : " + rs.getCharacterStream(6));
+						Logger.info("dob : " + rs.getDate(7));
+						Logger.info("created_date : " + rs.getDate(8));
 						return true;
 					}
 				}
@@ -129,5 +123,5 @@ public class StudentDao {
 		}
 		return false;
 	}
-	
+
 }
