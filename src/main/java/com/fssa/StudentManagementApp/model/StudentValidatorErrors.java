@@ -22,5 +22,5 @@ public class StudentValidatorErrors {
    // Error msge for invalid email
    public static final String INVALID_EMAILID = "Don't give invalid emaildid";  
    //Error msge for gender
-   public static final String INVALID_GENDER = "The gender should be in M OR F";
+   public static final String INVALID_GENDER = "The gender should be in Male OR Female";
 }

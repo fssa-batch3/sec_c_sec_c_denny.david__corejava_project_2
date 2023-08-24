@@ -35,7 +35,7 @@ public class TestStudentService {
 		Student student1 = new Student();
 		student1.setName("");
 		student1.setGender(Gender.MALE);
-		LocalDate dob = LocalDate.of(2024,02,13);
+		LocalDate dob = LocalDate.of(2024,02,13); 
 		student1.setDob(dob);
 		LocalDate createdDate = dob;
 		student1.setEmailId("joelpremkumar.gamil.com");
@@ -67,12 +67,12 @@ public class TestStudentService {
 		@Test 
 		public void testfindStudentbyName() throws SQLException {
 			
-			Assertions.assertTrue(StudentService.findStudentbyName("Denny"));
+			Assertions.assertTrue(StudentService.findStudentByName("Denny"));
 		}
 	@Test 
 		public void testfindStudentbyInvalidName()throws SQLException {
 		try {
-			StudentService.findStudentbyName("");
+			StudentService.findStudentByName("");
 		}
 		catch(IllegalArgumentException e) {
 			Assertions.assertEquals(e.getMessage(), StudentValidatorErrors.INVALID_NAME);

@@ -18,7 +18,7 @@ public class TestStudentManagmentAppValidator {
 		catch(IllegalArgumentException e) {
 			Assertions.assertEquals(e.getMessage(),StudentValidatorErrors.INVALID_NULL);
 		}
-		
+		 
 	}
 	@Test
   public void testStudentValidator() {  
@@ -96,10 +96,7 @@ public class TestStudentManagmentAppValidator {
 		}
 	}
 	
-//	@Test 
-//	public void testStudentValidPassword() {
-//	        Assertions.assertTrue(StudentValidator.validatePassword("123"));
-//	}
+
 	@Test
 	public void testStudentInValidateDob() {
 		try {

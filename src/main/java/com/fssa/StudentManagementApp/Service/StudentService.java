@@ -6,35 +6,81 @@ import com.fssa.StudentManagementApp.dao.StudentDao;
 import com.fssa.StudentManagementApp.model.Student;
 import com.fsss.StudentManagementApp.Validator.StudentValidator;
 
+/**
+ * Service class for managing student-related operations.
+ */
 public class StudentService {
-    
-  
-  public static  boolean addStudent(Student student) throws IllegalArgumentException, SQLException{
-	  if(StudentValidator.validateStudent(student)) {
-		 return StudentDao.addStudent(student);
-	  }
-	  return false;
-  }   
-     public static boolean readStudent(Student student) throws IllegalArgumentException, SQLException {
-    	 StudentDao.readStudent();
-    	 return true; 
-     }
-     public static boolean updateStudent(Student student,int id) throws IllegalArgumentException, SQLException {
-    	 if(StudentValidator.validateStudent(student)) {
-    		 StudentDao.updateStudent(student, id);
-    	 }
-    	 return true;
-     } 
-     public static boolean deleteStudent(int id)throws IllegalArgumentException, SQLException {
-    	 if(StudentValidator.validateId(id)) {
-    		  StudentDao.deleteStudent(id);
-    	 }
-    	 return true;
-     }
-     public static boolean findStudentbyName(String name) throws SQLException {
-    	 if(StudentValidator.validateName(name)) {
-    		 StudentDao.findStudentByName(name);
-    	 }
-    	 return true;
-     }
+
+    /**
+     * Adds a student to the system.
+     *
+     * @param student The student to be added.
+     * @return {@code true} if the student was successfully added, {@code false} otherwise.
+     * @throws SQLException If there's an issue with the database operation.
+     */
+    public static boolean addStudent(Student student) throws SQLException {
+        if (StudentValidator.validateStudent(student)) {
+            StudentDao.addStudent(student);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Retrieves information about a student.
+     *
+     * @param student The student whose information is to be retrieved.
+     * @return {@code true} if the student's information was successfully retrieved, {@code false} otherwise.
+     * @throws SQLException If there's an issue with the database operation.
+     */
+    public static boolean readStudent(Student student) throws SQLException {
+        StudentDao.readStudent();
+        return true;
+    }
+
+    /**
+     * Updates student information in the system.
+     *
+     * @param student The updated student information.
+     * @param id      The ID of the student to be updated.
+     * @return {@code true} if the student's information was successfully updated, {@code false} otherwise.
+     * @throws SQLException If there's an issue with the database operation.
+     */
+    public static boolean updateStudent(Student student, int id) throws SQLException {
+        if (StudentValidator.validateStudent(student)) {
+            StudentDao.updateStudent(student, id);
+            return true;
+        }
+        return false; 
+    }
+
+    /**
+     * Deletes a student from the system.
+     *
+     * @param id The ID of the student to be deleted.
+     * @return {@code true} if the student was successfully deleted, {@code false} otherwise.
+     * @throws SQLException If there's an issue with the database operation.
+     */
+    public static boolean deleteStudent(int id) throws SQLException {
+        if (StudentValidator.validateId(id)) {
+            StudentDao.deleteStudent(id);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Finds a student by their name.
+     *
+     * @param name The name of the student to be searched.
+     * @return {@code true} if the student was found, {@code false} otherwise.
+     * @throws SQLException If there's an issue with the database operation.
+     */
+    public static boolean findStudentByName(String name) throws SQLException {
+        if (StudentValidator.validateName(name)) {
+            StudentDao.findStudentByName(name);
+            return true;
+        }
+        return false;
+    }
 }

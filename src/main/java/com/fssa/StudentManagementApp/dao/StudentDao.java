@@ -5,18 +5,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
-
 import com.fssa.StudentManagementApp.model.Student;
 import com.fssa.StudentManagementApp.util.ConnectionUtil;
 import com.fssa.StudentManagementApp.util.Logger;
+import com.fssa.studentmanagement.exceptions.DAOException;
 import com.fsss.StudentManagementApp.Validator.StudentValidator;
 
 public class StudentDao {
 	
 
 //	create student
-	public static boolean addStudent(Student student) throws SQLException {
+	public static boolean addStudent(Student student) throws  SQLException{
 		StudentValidator.validateStudent(student);
 
 		try (Connection con = ConnectionUtil.getConnection()) {
@@ -38,8 +37,12 @@ public class StudentDao {
 					return false;
 				}
 
-			}
+			} 
+		}catch (SQLException e) {
+			e.printStackTrace();;
+			throw new SQLException("Error while connecting to DB");
 		}
+	
 	}
 	
 	
@@ -58,7 +61,7 @@ public class StudentDao {
 						Logger.info("gender : " + rs.getCharacterStream(6));
 						Logger.info("dob : " + rs.getDate(7));
 						Logger.info("created_date : " + rs.getDate(8));
-						Logger.info("\n");
+						Logger.info("\n"); 
 					}
 				}
 			}
