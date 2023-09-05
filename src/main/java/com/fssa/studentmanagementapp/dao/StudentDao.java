@@ -19,7 +19,7 @@ public class StudentDao {
 		StudentValidator.validateStudent(student);
 
 		try (Connection con = ConnectionUtil.getConnection()) {
-			String query = "INSERT INTO students (name,email,mobile_no,password,gender,dob) VALUES(?,?,?,?,?,?)";
+			String query = "INSERT INTO students (name,email,mobile_no,password,gender,dob,created_date) VALUES(?,?,?,?,?,?,?)";
 			try (PreparedStatement pst = con.prepareStatement(query)) {
 				pst.setString(1, student.getName());
 				pst.setString(2, student.getEmailId());
@@ -27,6 +27,7 @@ public class StudentDao {
 				pst.setString(4, student.getPassword());
 				pst.setString(5, student.getGender() + "");
 				pst.setDate(6, java.sql.Date.valueOf(student.getDob()));
+				pst.setDate(7, java.sql.Date.valueOf(student.getCreatedDate()));
 
 				int rows = pst.executeUpdate();
 
@@ -70,13 +71,19 @@ public class StudentDao {
 	}
 
 //	update student
-	public static boolean updateStudent(Student student, int id) throws SQLException {
+	public static boolean updateStudent(Student student, int id) {
 		try (Connection con = ConnectionUtil.getConnection()) {
 //		   String query = "INSERT INTO students (name,email,mobile_no,password,gender,dob) VALUES(?,?,?,?,?,?)";
-			String query = "UPDATE students SET name = ?,?,?,?,?,? WHERE id = ?,?,?,?,?,?";
+			String query = "UPDATE students SET name=?,email=?,mobile_no=?,password=?,gender=?,dob=?,created_date=? WHERE id = ?";
 			try (PreparedStatement pst = con.prepareStatement(query)) {
 				pst.setString(1, student.getName());
 				pst.setInt(2, id);
+				pst.setString(3, student.getEmailId());
+				pst.setString(4, student.getMobileNo());
+				pst.setString(5, student.getPassword());
+				pst.setString(6, student.getGender() + "");
+				pst.setDate(7, java.sql.Date.valueOf(student.getDob()));
+				pst.setDate(8, java.sql.Date.valueOf(student.getCreatedDate()));
 				int rows = pst.executeUpdate();
 				if (rows > 0) {
 					return true;
@@ -84,7 +91,11 @@ public class StudentDao {
 					return false;
 				}
 			}
+		} catch (SQLException e) {
+			Logger.info(e.getMessage());
+			e.printStackTrace();
 		}
+		return true;
 	}
 
 //	delete student
@@ -102,7 +113,7 @@ public class StudentDao {
 			}
 		}
 	}
- 
+
 //	findStudentByName
 	public static Student findStudentByName(String name) throws SQLException {
 		try (Connection connection = ConnectionUtil.getConnection()) {

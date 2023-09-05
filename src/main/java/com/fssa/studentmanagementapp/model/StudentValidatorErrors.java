@@ -14,7 +14,7 @@ public class StudentValidatorErrors {
    public static final String INVALID_MOBILENO = "The mobile no should not be empty and it should be within 10 numbers";
    
    //Errors message for password
-   public static final String INVALID_PASS = "The password should constain letters and special characters and numbers";
+   public static final String INVALID_PASS = "The password should contain only numbers";
    //Errors msge for Dob
    public static final String INVALID_DOB = "The Date of birth should not be in the future";
    //Error message for creating Date 
