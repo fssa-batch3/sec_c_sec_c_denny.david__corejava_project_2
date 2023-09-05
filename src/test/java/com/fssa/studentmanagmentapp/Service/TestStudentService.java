@@ -2,10 +2,8 @@ package com.fssa.studentmanagmentapp.Service;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
-
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-
 import com.fssa.studentmanagementapp.Enum.Gender;
 import com.fssa.studentmanagementapp.Service.StudentService;
 import com.fssa.studentmanagementapp.model.Student;
@@ -111,7 +109,7 @@ public class TestStudentService {
 		student.setCreatedDate(dob);
 		student.setMobileNo("9944187133");
 //		StudentService.addStudent(student);
-		
+
 		Assertions.assertTrue(StudentService.updateStudent(student, 8));
 	}
 
