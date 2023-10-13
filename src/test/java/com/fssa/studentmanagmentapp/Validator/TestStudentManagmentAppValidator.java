@@ -22,7 +22,7 @@ public class TestStudentManagmentAppValidator {
 	}
 	@Test
   public void testStudentValidator() {  
-	  try { 
+	  try {  
 		 StudentValidator.validateName(" ");
 	  }
 	  catch(IllegalArgumentException e) {

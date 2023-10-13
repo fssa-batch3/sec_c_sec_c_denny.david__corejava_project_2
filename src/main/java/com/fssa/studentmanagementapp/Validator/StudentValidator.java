@@ -25,9 +25,9 @@ public class StudentValidator {
 		if (student == null) {
 			throw new IllegalArgumentException(StudentValidatorErrors.INVALID_NULL);
 		}
-		validateCreatedDate(student.getCreatedDate());
+		
 		validateDob(student.getDob());
-		validateId(student.getId());
+
 		validateMobileNo(student.getMobileNo());
 		validateName(student.getName());
 		validatePassword(student.getPassword());
@@ -136,7 +136,19 @@ public class StudentValidator {
 			return true;
 		}
 	}
-
+    
+	public static boolean validateCreatedDate(LocalDate createdDate) throws IllegalArgumentException {
+		if (createdDate == null) {
+			throw new IllegalArgumentException(StudentValidatorErrors.INVALID_DOB);
+		}
+		LocalDate currentDate = LocalDate.now();
+		if (createdDate.isAfter(currentDate)) {
+			throw new IllegalArgumentException(StudentValidatorErrors.INVALID_DOB);
+		} else {
+			return true;
+		}
+	}
+	
 	/**
 	 * Validates the email of a student.
 	 *
@@ -161,19 +173,9 @@ public class StudentValidator {
 	 * @throws IllegalArgumentException if the created date is null or in the
 	 *                                  future.
 	 */
-	public static boolean validateCreatedDate(LocalDate createdDate) throws IllegalArgumentException {
-		LocalDate currentDate = LocalDate.now();
-		if (createdDate == null && createdDate.isAfter(currentDate)) {
-			throw new IllegalArgumentException(StudentValidatorErrors.INVALID_CREATEDDATE);
-		} else {
-			return true;
-		}
-	}
 
 	public static boolean validateGender(Gender gender) throws IllegalArgumentException {
-		
-		
-        if (gender != Gender.MALE && gender != Gender.FEMALE) {
+		if (gender != Gender.MALE && gender != Gender.FEMALE) {
             throw new IllegalArgumentException("Invalid gender");
         }
        return true; 

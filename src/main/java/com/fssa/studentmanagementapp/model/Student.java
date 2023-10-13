@@ -15,6 +15,14 @@ public class Student {
 	private String mobileNo;
 	private String password;
 	private Gender gender;
+    private int class_id;
+	public int getClass_id() {
+		return class_id;
+	}
+
+	public void setClass_id(int class_id) {
+		this.class_id = class_id;
+	}
 
 	private LocalDate dob;
 	private LocalDate createdDate;
@@ -44,7 +52,7 @@ public class Student {
 		this.createdDate = createdDate;
 		this.gender = gender;
 	}
-
+ 
 	// ... (getter and setter methods for other attributes)
 
 	/**
@@ -131,7 +139,7 @@ public class Student {
 	@Override
 	public String toString() {
 		return "Student [id=" + id + ", name=" + name + ", emailId=" + emailId + ", mobileNo=" + mobileNo
-				+ ", password=" + password + ", gender=" + gender + ", dob=" + dob + ", createdDate=" + createdDate
+				+ ", password=" + password + ", gender=" + gender + ",class = " + class_id + ", dob=" + dob + ", createdDate=" + createdDate
 				+ "]";
 	}
 

@@ -1,15 +1,21 @@
 package com.fssa.studentmanagementapp.Service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import com.fssa.studentmanagement.exceptions.DAOException;
+import com.fssa.studentmanagementapp.Validator.StudentValidator;
 import com.fssa.studentmanagementapp.dao.StudentDao;
 import com.fssa.studentmanagementapp.model.Student;
-import com.fssa.studentmanagementapp.Validator.StudentValidator;
 
 /**
  * Service class for managing student-related operations.
  */
 public class StudentService {
+
+	public StudentService(StudentValidator studentValidator, StudentDao studentDao) {
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * Adds a student to the system.
@@ -22,11 +28,18 @@ public class StudentService {
 	public static boolean addStudent(Student student) throws SQLException {
 		if (StudentValidator.validateStudent(student)) {
 			StudentDao.addStudent(student);
-			return true;
+			return true; 
 		}
 		return false;
 	}
 
+	public static int getId(int Id) throws SQLException {
+		if (StudentValidator.validateId(Id)) {
+			StudentDao.getId(Id);
+			return 1; 
+		}
+		return 0;
+	}
 	/**
 	 * Retrieves information about a student.
 	 *
@@ -87,4 +100,24 @@ public class StudentService {
 		}
 		return null;
 	}
+	
+	
+	public static  ArrayList<Student> getAllStudent() {
+
+		// If validation succeeds, get all the blood request using the DAO
+		return StudentDao.getAllStudent();
+
+		// Return true to indicate successful execution (may need more refined logic)
+
+	}
+
+	public static Student findStudentByEmail(String email) throws Exception, DAOException, SQLException {
+		Student studentList = null;
+		if (StudentValidator.validateEmailId(email)) {
+			studentList = StudentDao.findStudentByEmail(email);
+
+		}
+		return studentList;
+	}
+	
 }
