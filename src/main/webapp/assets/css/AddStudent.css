@@ -1,0 +1,139 @@
+/* Reset some default styles and apply a background color */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    display: flex;
+    /*flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    /*justify-content: center; /* Center content vertically */
+}
+
+/* Style the sidebar navigation */
+.sidebar {
+    background-color: rgb(48, 48, 50);
+    font-weight: 600;
+    width: 200px;
+    height: 100%;
+    position: fixed;
+    padding: 100px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content vertically */
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar li {
+    padding: 10px;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: white;
+}
+
+/* Style the modal container */
+.modal {
+    display: flex;
+    
+    background-color: #f5f5f5;
+    justify-content: center; /* Center content horizontally */
+    padding: 20px;
+}
+
+.modal-content {
+	margin:50px 0px 0px 100px;
+    width: 400px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    border: 1px solid black;
+}
+
+/* Style the close button */
+.close {
+    position: absolute;
+  
+    right: 450px;
+    font-size: 30px;
+    font-weight: 1000;
+    cursor: pointer;
+    color: #777;
+}
+
+/* Style form elements */
+.form {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center form horizontally */
+}
+
+.form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="password"],
+.form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form select {
+    height: 40px;
+}
+
+/* Style the button container */
+.form .button-container {
+    text-align: center;
+}
+
+.form input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.form input[type="submit"]:hover {
+    background-color: rgb(0, 0, 0);
+}
+
+h1#add_student {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    
+}
+.edit-content {
+	margin:50px 0px 0px 100px;
+    width: 400px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    border: 1px solid black;
+}
+#editstupopup {
+	margin-top: -200px;
+}

@@ -2,8 +2,8 @@ package com.fssa.studentmanagementapp.Service;
 
 import java.sql.SQLException;
 
-import com.fssa.studentmanagement.exceptions.DAOException;
-import com.fssa.studentmanagement.exceptions.InvalidUserDetailException;
+import com.fssa.studentmanagementapp.exceptions.DAOException;
+import com.fssa.studentmanagementapp.exceptions.InvalidUserDetailException;
 import com.fssa.studentmanagementapp.Validator.UserValidator;
 import com.fssa.studentmanagementapp.dao.UserDAO;
 import com.fssa.studentmanagementapp.model.User;

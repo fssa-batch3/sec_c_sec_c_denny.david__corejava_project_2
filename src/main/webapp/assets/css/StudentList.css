@@ -1,0 +1,181 @@
+@charset "ISO-8859-1";
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+     display: flex;
+    flex-direction: column;
+}
+
+.sidebar {
+    background-color: rgb(48, 48, 50);
+	
+	font-weight: 600;
+	
+    width: 200px;
+    height: 100%;
+    position: fixed;
+     padding: 100px 20px; 
+}
+.sidebar h2 {
+    color:white ;
+}
+.sidebar ul {
+    list-style-type: none;
+    padding-top: 50px;
+}
+
+.sidebar li {
+    padding: 10px;
+    
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+.content {
+    margin-left: 250px;
+    margin-top: -100px;
+}
+.content #main_logo {
+    width: 450px;
+    height: 300px;
+    z-index: 0;
+    margin-top:-250px;
+    margin-left: 700px;
+}
+p#create_student {
+    font-weight: bold;
+    font-size: 23px;
+    margin-left:-10px;
+}
+.create_block {
+    display: flex;
+    justify-content: space-around;
+    background-color:rgb(59, 59, 60) ;
+    box-shadow:  rgba(200, 198, 198, 0.24) 0px 3px 8px;
+    border-radius: 10px;
+}
+img#add_student {
+    margin-top: 15px;
+    width:45px;
+    height:45px;
+    border-radius: 50%;
+}
+main form {
+    margin-left: 550px;
+    margin-top: 25px;
+}
+main form input {
+    width:500px;
+    height:40px;
+    border: 3px solid rgba(200, 198, 198, 0.24);
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 10px;
+
+}
+main form button,main form p {
+	display: inline;
+    height:40px;
+    font-size: 20px;
+    color: rgb(220, 219, 219);
+    padding: 8px;
+    background-color:rgb(48, 48, 50);
+    border: 3px solid rgba(200, 198, 198, 0.24);
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+input[type=text]{
+    font-size: 15px;
+}
+.table{
+    width:1150px;
+    margin-left:300px;
+    margin-top:10px;
+}
+table {
+    width:94%;
+    border-collapse: collapse;
+    margin: 40px ;
+
+}
+
+th, td {
+    padding:  15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+table td button{
+	padding: 10px;
+	border-width: 0px;
+	background-color: lightgrey;
+	border-radius: 2px;
+	cursor: pointer;
+}
+
+th {
+background-color: rgb(48, 48, 50); color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* CSS for hover effect */
+tr:hover {
+    background-color: #ddd;
+}
+
+.assignStudentDiv{
+	width: 500px;
+	height: 250px;
+	margin-top: 30px;
+	margin-left: 600px;
+	padding: 20px;
+	box-sizing: border-box;
+	text-align: center;
+	background-color: white;
+	border-radius: 10px;
+}
+.assignDetails{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin:10px 0px;
+}
+.assignDetails select{
+	border-width: 0px;
+	height: 30px;
+	padding: 5px;
+
+	background-color: rgb(227, 227, 227);
+}
+.assignStudentDiv button{
+	border-width: 0px;
+	padding: 10px 25px;
+	background-color: rgb(77, 77, 77);
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.not_view{
+	display: none;
+}
+
+#moveBtn{
+    margin-left: 250px;
+    padding: 1.5em;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#updateClassId{
+
+    margin-left: 300px;
+    cursor: pointer;
+}

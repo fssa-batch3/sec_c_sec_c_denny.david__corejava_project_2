@@ -1,5 +1,6 @@
 <%@page import="com.fssa.studentmanagementapp.model.Student"%>
 <html>
+
 <body>
 <h2>Search student by name</h2>
 

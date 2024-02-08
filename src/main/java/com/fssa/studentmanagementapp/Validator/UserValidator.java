@@ -1,12 +1,10 @@
 package com.fssa.studentmanagementapp.Validator;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.fssa.studentmanagement.exceptions.InvalidUserDetailException;
+import com.fssa.studentmanagementapp.exceptions.InvalidUserDetailException;
 import com.fssa.studentmanagementapp.Enum.Gender;
 import com.fssa.studentmanagementapp.model.StudentValidatorErrors;
 import com.fssa.studentmanagementapp.model.User;

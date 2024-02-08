@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.fssa.studentmanagementapp.Enum.Gender;
 import com.fssa.studentmanagementapp.Enum.Stu_Status;
@@ -71,24 +72,30 @@ public class StudentClassDAO {
 		return false;
 	}
 	
-	public static boolean updateStudentToClass(String email, int classNum) throws SQLException {
+	public static boolean updateStudentToClass(List<Integer> ids, int classNum) throws SQLException {
 		try (Connection con = ConnectionUtil.getConnection()) {
+
 			String query = "Update student_class SET  class=? WHERE student_id=?";
+
+			for(int item : ids){
+
+
 			try (PreparedStatement pst = con.prepareStatement(query)) {
-				int studentId = StudentDao.getStudentIdByemail(email);
 				pst.setInt(1, classNum);
-				pst.setInt(2, studentId);
-	
+				pst.setInt(2, item);
+
 				int rows = pst.executeUpdate();
-				System.out.println(rows + "row/rows affected");
-				return true;
+
+				}
+
 			}
-			catch(Exception e) {
-				e.printStackTrace();
-				System.out.println(e.getMessage());
-			}				
+
 		}
-		return false;
+		catch(Exception e) {
+			e.printStackTrace();
+			throw new SQLException(e);
+        }
+	return true;
 	}
 
 //getStudentsByClass

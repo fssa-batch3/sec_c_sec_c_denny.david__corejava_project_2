@@ -3,7 +3,7 @@ package com.fssa.studentmanagementapp.Service;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.fssa.studentmanagement.exceptions.DAOException;
+import com.fssa.studentmanagementapp.exceptions.DAOException;
 import com.fssa.studentmanagementapp.Validator.StudentValidator;
 import com.fssa.studentmanagementapp.dao.StudentDao;
 import com.fssa.studentmanagementapp.model.Student;
@@ -111,13 +111,13 @@ public class StudentService {
 
 	}
 
-	public static Student findStudentByEmail(String email) throws Exception, DAOException, SQLException {
-		Student studentList = null;
-		if (StudentValidator.validateEmailId(email)) {
-			studentList = StudentDao.findStudentByEmail(email);
-
-		}
-		return studentList;
-	}
+//	public static Student findStudentByEmail(String email) throws Exception, DAOException, SQLException {
+//		Student studentList = null;
+//		if (StudentValidator.validateEmailId(email)) {
+//			studentList = StudentDao.findStudentByEmail(email);
+//
+//		}
+//		return studentList;
+//	}
 	
 }

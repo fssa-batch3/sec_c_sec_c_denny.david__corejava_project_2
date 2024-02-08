@@ -1,49 +1,53 @@
 package com.fssa.studentmanagementapp.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.fssa.studentmanagementapp.Enum.Gender;
-import com.fssa.studentmanagementapp.model.Student;
 import com.fssa.studentmanagementapp.Service.StudentService;
+import com.fssa.studentmanagementapp.model.Student;
 
 /**
- * Servlet implementation class Sample
+ * Servlet implementation class FindByNameServlet
  */
-@WebServlet("/FindStudentByName")
 public class FindByNameServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		String searchedName = request.getParameter("search").trim();//
 
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
+		List<Student> resultStudents = new ArrayList<Student>();
 
-		
-        String name = request.getParameter("name");
-		try {
-			Student stu = StudentService.findStudentByName(name);
-			request.setAttribute("STUDENT_DETAIL", stu);
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
+		List<Student> allStudents = StudentService.getAllStudent();
+
+		for (Student student : allStudents) {
+
+			if (student.getName().toLowerCase().startsWith(searchedName)
+					|| student.getName().startsWith(searchedName)) {
+				// If the plant matches the search criteria, add it to the resultPlants list.
+				resultStudents.add(student);
+			}
+
 		}
-		RequestDispatcher dis = getServletContext().getRequestDispatcher("/index.jsp");
-		dis.forward(request, response);
+
+		// next JSP page.
+		request.setAttribute("STUDENT_LIST", resultStudents);
+
+		RequestDispatcher rd = request.getRequestDispatcher("./studentList.jsp");
+
+		rd.forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 	}
 
 }

@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.fssa.studentmanagement.exceptions.DAOException;
+import com.fssa.studentmanagementapp.exceptions.DAOException;
 import com.fssa.studentmanagementapp.model.User;
 import com.fssa.studentmanagementapp.util.ConnectionUtil;
 

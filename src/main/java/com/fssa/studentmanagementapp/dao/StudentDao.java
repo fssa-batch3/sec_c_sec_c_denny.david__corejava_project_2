@@ -9,7 +9,6 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import com.fssa.studentmanagement.exceptions.DAOException;
 import com.fssa.studentmanagementapp.Enum.Gender;
 import com.fssa.studentmanagementapp.Validator.StudentValidator;
 import com.fssa.studentmanagementapp.model.Student;
@@ -23,7 +22,7 @@ public class StudentDao {
 		StudentValidator.validateStudent(student);
 
 		try (Connection con = ConnectionUtil.getConnection()) {
-			String query = "INSERT INTO students (name,email,mobile_no,password,gender,dob,created_date) VALUES(?,?,?,?,?,?,?)";
+			String query = "INSERT INTO students (name,email,mobile_no,password,gender,dob,created_date,father_name,mother_name,address,blood_group) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 			try (PreparedStatement pst = con.prepareStatement(query)) {
 				pst.setString(1, student.getName());
 				pst.setString(2, student.getEmailId());
@@ -33,6 +32,10 @@ public class StudentDao {
 				System.out.println("jnh  "+student.getGender());
 				pst.setDate(6, java.sql.Date.valueOf(student.getDob()));
 				pst.setDate(7, Date.valueOf(LocalDate.now()));
+				pst.setString(8, student.getFatherName());
+				pst.setString(9, student.getMotherName());
+				pst.setString(10, student.getAddress());
+				pst.setString(11, student.getBloodGroup());
 
 				int rows = pst.executeUpdate();
 
@@ -67,6 +70,10 @@ public class StudentDao {
 						Logger.info("gender : " + rs.getCharacterStream(6));
 						Logger.info("dob : " + rs.getDate(7));
 						Logger.info("created_date : " + rs.getDate(8));
+						Logger.info("father name : " + rs.getString("father_name"));
+						Logger.info("mother name : " + rs.getString("mother_name"));
+						Logger.info("address : " + rs.getString("address"));
+						Logger.info("blood group : " + rs.getString("blood_group"));
 						Logger.info("\n");
 					}
 				}
@@ -79,7 +86,7 @@ public class StudentDao {
 	public static boolean updateStudent(Student student, int id) {
 		try (Connection con = ConnectionUtil.getConnection()) {
 //		   String query = "INSERT INTO students (name,email,mobile_no,password,gender,dob) VALUES(?,?,?,?,?,?)";
-			String query = "UPDATE students SET name=?,email=?,mobile_no=?,password=?,gender=?,dob=?,created_date=? WHERE id = ?";
+			String query = "UPDATE students SET name=?,email=?,mobile_no=?,password=?,gender=?,dob=?,created_date=?,father_name=?,mother_name=?,address=?,blood_group=? WHERE id = ?";
 			try (PreparedStatement pst = con.prepareStatement(query)) {
 				pst.setString(1, student.getName());
 				pst.setString(2, student.getEmailId());
@@ -88,7 +95,12 @@ public class StudentDao {
 				pst.setString(5, student.getGender().getValue());
 				pst.setDate(6, java.sql.Date.valueOf(student.getDob()));
 				pst.setDate(7, java.sql.Date.valueOf(student.getCreatedDate()));
-				pst.setInt(8, id);
+				pst.setString(8, student.getFatherName());
+				pst.setString(9, student.getMotherName());
+				pst.setString(10, student.getAddress());
+				pst.setString(11, student.getBloodGroup());
+				pst.setInt(12, id);
+		
 				int rows = pst.executeUpdate();
 				if (rows > 0) {
 					return true;
@@ -154,6 +166,10 @@ public class StudentDao {
 						stu.setDob(rs.getDate(7).toLocalDate());
 						stu.setCreatedDate(rs.getDate(8).toLocalDate());
 						stu.setClass_id(getClassByStudentId(rs.getInt(1)));
+						stu.setFatherName(rs.getString("father_name"));
+						stu.setMotherName(rs.getString("mother_name"));
+						stu.setAddress(rs.getString("address"));
+						stu.setBloodGroup(rs.getString("blood_group"));
 						return stu;
 					}
 				}
@@ -207,6 +223,10 @@ public class StudentDao {
 						stu.setMobileNo(rs.getString("mobile_no"));
 						stu.setCreatedDate(rs.getDate("created_date").toLocalDate());
 						stu.setClass_id(getClassByStudentId(rs.getInt("id")));
+						stu.setFatherName(rs.getString("father_name"));
+						stu.setMotherName(rs.getString("mother_name"));
+						stu.setAddress(rs.getString("address"));
+						stu.setBloodGroup(rs.getString("blood_group"));
 						// Convert "reqVerification" column to boolean value
 						// stu.setVerification(rs.getString("reqVerification").equals("True") ? ACTIVE :
 						// INACTIVE);
@@ -252,6 +272,10 @@ public class StudentDao {
 							stu.setMobileNo(rs.getString("mobile_no"));
 							stu.setCreatedDate(rs.getDate("created_date").toLocalDate());
 							stu.setClass_id(getClassByStudentId(id));
+							stu.setFatherName(rs.getString("father_name"));
+							stu.setMotherName(rs.getString("mother_name"));
+							stu.setAddress(rs.getString("address"));
+							stu.setBloodGroup(rs.getString("blood_group"));
 							studentsList.add(stu);
 						}
 
@@ -287,36 +311,37 @@ public class StudentDao {
 
 	}
      
-	public static Student findStudentByEmail(String email) throws DAOException, SQLException, Exception {
-
-		Student studentList = new Student();
-		try (Connection connection = ConnectionUtil.getConnection()) {
-
-			String query = "SELECT * FROM students WHERE email =?";
-			try (PreparedStatement pst = connection.prepareStatement(query)) {
-				pst.setString(1, email);
-				try (ResultSet rs = pst.executeQuery()) {
-					if (rs.next()) {
-						Student stu = new Student();
-
-						stu.setId(rs.getInt("id"));
-						stu.setName(rs.getString("name"));
-						Gender gen = Gender.valueToEnumMapping(rs.getString("gender").toUpperCase());
-						stu.setGender(gen);
-						System.out.println(Gender.valueToEnumMapping(rs.getString("gender").toUpperCase()));
-						stu.setDob(rs.getDate("dob").toLocalDate());
-						stu.setEmailId(rs.getString("email"));
-						stu.setMobileNo(rs.getString("mobile_no"));
-
-					}
-
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-				throw new Exception(e);
-			}
-		}
-		return studentList;
-	}
+//	public static Student findStudentByEmail(String email) throws DAOException, SQLException, Exception {
+//
+//		Student studentList = new Student();
+//		try (Connection connection = ConnectionUtil.getConnection()) {
+//
+//			String query = "SELECT * FROM students WHERE email =?";
+//			try (PreparedStatement pst = connection.prepareStatement(query)) {
+//				pst.setString(1, email);
+//				try (ResultSet rs = pst.executeQuery()) {
+//					if (rs.next()) {
+//						Student stu = new Student();
+//
+//						stu.setId(rs.getInt("id"));
+//						stu.setName(rs.getString("name"));
+//						Gender gen = Gender.valueToEnumMapping(rs.getString("gender").toUpperCase());
+//						stu.setGender(gen);
+//						System.out.println(Gender.valueToEnumMapping(rs.getString("gender").toUpperCase()));
+//						stu.setDob(rs.getDate("dob").toLocalDate());
+//						stu.setEmailId(rs.getString("email"));
+//						stu.setMobileNo(rs.getString("mobile_no"));
+//						
+//
+//					}
+//
+//				}
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//				throw new Exception(e);
+//			}
+//		}
+//		return studentList;
+//	}
 
 }

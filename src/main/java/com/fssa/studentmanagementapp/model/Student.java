@@ -11,10 +11,14 @@ public class Student {
 
 	private int id;
 	private String name;
+	private String fatherName;
+	private String motherName;
 	private String emailId;
 	private String mobileNo;
 	private String password;
 	private Gender gender;
+	private String address;
+	private String bloodGroup;
     private int class_id;
 	public int getClass_id() {
 		return class_id;
@@ -136,13 +140,47 @@ public class Student {
 		// Default constructor
 	}
 
-	@Override
-	public String toString() {
-		return "Student [id=" + id + ", name=" + name + ", emailId=" + emailId + ", mobileNo=" + mobileNo
-				+ ", password=" + password + ", gender=" + gender + ",class = " + class_id + ", dob=" + dob + ", createdDate=" + createdDate
-				+ "]";
+	public String getFatherName() {
+		return fatherName;
 	}
 
+	public void setFatherName(String fatherName) {
+		this.fatherName = fatherName;
+	}
+
+	public String getMotherName() {
+		return motherName;
+	}
+
+	public void setMotherName(String motherName) {
+		this.motherName = motherName;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getBloodGroup() {
+		return bloodGroup;
+	}
+
+	public void setBloodGroup(String bloodGroup) {
+		this.bloodGroup = bloodGroup;
+	}
+
+	@Override
+	public String toString() {
+		return "Student [id=" + id + ", name=" + name + ", fatherName=" + fatherName + ", motherName=" + motherName
+				+ ", emailId=" + emailId + ", mobileNo=" + mobileNo + ", password=" + password + ", gender=" + gender
+				+ ", address=" + address + ", bloodGroup=" + bloodGroup + ", class_id=" + class_id + ", dob=" + dob
+				+ ", createdDate=" + createdDate + "]";
+	}
+
+	
 	// ... (getter and setter methods for other attributes)
 	
 	

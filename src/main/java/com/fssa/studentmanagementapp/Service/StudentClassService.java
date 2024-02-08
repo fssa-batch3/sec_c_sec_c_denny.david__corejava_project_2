@@ -2,6 +2,7 @@ package com.fssa.studentmanagementapp.Service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.fssa.studentmanagementapp.dao.StudentClassDAO;
 import com.fssa.studentmanagementapp.model.Student;
@@ -24,10 +25,10 @@ public class StudentClassService {
 		return StudentClassDAO.assignStudentToClass( studentEmail, classId);
 		
 	}
-	public  boolean updateStudentToClass(String studentEmail, int classId) throws SQLException {
+	public  boolean updateStudentToClass(List<Integer> ids, int classId) throws SQLException {
 		
 		
-		return StudentClassDAO.updateStudentToClass( studentEmail, classId);
+		return StudentClassDAO.updateStudentToClass(ids , classId);
 		
 	}
 	public ArrayList<Student> getStudentsByClass(int classNum) throws SQLException{
